@@ -3,6 +3,7 @@ from fastapi import FastAPI, HTTPException
 from mysql.connector import Error
 from app.routers.api import router as api_router
 from app.db.connection import get_connection
+from app.routers.websocket import router as websocket_router
 
 app = FastAPI(
     title="API de Vehículos IoT",
@@ -49,4 +50,4 @@ def health():
 
 # Registrar las rutas de los 21 endpoints
 app.include_router(api_router)
-
+app.include_router(websocket_router)
