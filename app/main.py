@@ -1,6 +1,7 @@
+
 from fastapi import FastAPI, HTTPException
 from mysql.connector import Error
-
+from app.routers.api import router as api_router
 from app.db.connection import get_connection
 
 app = FastAPI(
@@ -44,3 +45,8 @@ def health():
             status_code=503,
             detail="No fue posible conectar con la base de datos"
         )
+
+
+# Registrar las rutas de los 21 endpoints
+app.include_router(api_router)
+
